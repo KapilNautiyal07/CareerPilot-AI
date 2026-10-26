@@ -1,0 +1,232 @@
+[
+  {"id": "dsa-two-sum", "category": "dsa", "kind": "code", "difficulty": "easy", "skills": ["Data Structures & Algorithms"],
+   "prompt": "Write a function `two_sum(nums, target)` that returns the indices [i, j] (i < j) of the two numbers in `nums` that add up to `target`. Assume exactly one solution exists. Then explain the time and space complexity of your approach.",
+   "rubric": [
+     {"id": "correctness", "description": "Passes the test cases", "weight": 0.55, "type": "tests"},
+     {"id": "complexity", "description": "States O(n) time with a hash map (or justifies the complexity of the chosen approach)", "weight": 0.25, "concepts": [["o(n)", "linear time", "linear"], ["hash", "dict", "map", "set"]], "hint": "Can you avoid checking every pair? What lookup structure is O(1)?", "follow_up": "Your solution's complexity wasn't fully explained. What are the time and space complexity, and how would a hash map change them?"},
+     {"id": "edge_cases", "description": "Considers duplicates / negative numbers / same element not used twice", "weight": 0.2, "concepts": [["duplicate", "same element", "twice", "negative", "edge case"]], "hint": "What happens if the same value appears twice?", "follow_up": "How does your solution handle duplicate values such as nums=[3,3], target=6?"}
+   ],
+   "hints": ["Store each number's index as you iterate.", "For each x, check whether target - x was already seen."],
+   "code_spec": {"function": "two_sum", "compare": "exact", "tests": [{"args": [[2, 7, 11, 15], 9], "expected": [0, 1]}, {"args": [[3, 2, 4], 6], "expected": [1, 2]}, {"args": [[3, 3], 6], "expected": [0, 1]}, {"args": [[-1, -2, -3, -4, -5], -8], "expected": [2, 4]}]}},
+  {"id": "dsa-valid-parentheses", "category": "dsa", "kind": "code", "difficulty": "easy", "skills": ["Data Structures & Algorithms"],
+   "prompt": "Write `is_valid(s)` that returns True if the string of brackets `()[]{}` is balanced and correctly nested, otherwise False. Explain your approach and its complexity.",
+   "rubric": [
+     {"id": "correctness", "description": "Passes the test cases", "weight": 0.55, "type": "tests"},
+     {"id": "approach", "description": "Uses a stack and explains why", "weight": 0.25, "concepts": [["stack", "push", "pop", "lifo"]], "hint": "Which data structure gives you the most recently opened bracket?", "follow_up": "Why is a stack the right data structure here?"},
+     {"id": "complexity", "description": "States O(n) time and O(n) space", "weight": 0.2, "concepts": [["o(n)", "linear"]], "hint": "How many times is each character processed?", "follow_up": "What is the worst-case space usage and when does it happen?"}
+   ],
+   "hints": ["Push opening brackets; on a closing bracket, check the top of the stack."],
+   "code_spec": {"function": "is_valid", "compare": "exact", "tests": [{"args": ["()[]{}"], "expected": true}, {"args": ["(]"], "expected": false}, {"args": ["([{}])"], "expected": true}, {"args": ["(("], "expected": false}, {"args": [""], "expected": true}]}},
+  {"id": "dsa-merge-intervals", "category": "dsa", "kind": "code", "difficulty": "medium", "skills": ["Data Structures & Algorithms"],
+   "prompt": "Write `merge(intervals)` that merges all overlapping intervals (lists of [start, end]) and returns the merged list sorted by start. Explain the complexity.",
+   "rubric": [
+     {"id": "correctness", "description": "Passes the test cases", "weight": 0.55, "type": "tests"},
+     {"id": "approach", "description": "Sorts by start then merges in one pass", "weight": 0.25, "concepts": [["sort"], ["overlap", "merge", "previous", "last"]], "hint": "What if the intervals were sorted by start time?", "follow_up": "Why does sorting first make a single pass sufficient?"},
+     {"id": "complexity", "description": "States O(n log n) due to sorting", "weight": 0.2, "concepts": [["n log n", "nlogn", "o(n log n)"]], "hint": "What dominates: the sort or the merge pass?", "follow_up": "What is the overall time complexity and which step dominates it?"}
+   ],
+   "hints": ["Sort intervals by start.", "Compare each interval with the last merged interval."],
+   "code_spec": {"function": "merge", "compare": "exact", "tests": [{"args": [[[1, 3], [2, 6], [8, 10], [15, 18]]], "expected": [[1, 6], [8, 10], [15, 18]]}, {"args": [[[1, 4], [4, 5]]], "expected": [[1, 5]]}, {"args": [[[5, 7], [1, 2]]], "expected": [[1, 2], [5, 7]]}, {"args": [[]], "expected": []}]}},
+  {"id": "dsa-top-k-frequent", "category": "dsa", "kind": "code", "difficulty": "medium", "skills": ["Data Structures & Algorithms"],
+   "prompt": "Write `top_k_frequent(nums, k)` returning the k most frequent elements (any order). Discuss at least two approaches and their complexity.",
+   "rubric": [
+     {"id": "correctness", "description": "Passes the test cases", "weight": 0.5, "type": "tests"},
+     {"id": "approaches", "description": "Discusses counting plus heap or bucket sort", "weight": 0.3, "concepts": [["count", "counter", "frequency", "hash"], ["heap", "bucket", "priority queue", "sort"]], "hint": "Count first, then think about how to pick the k largest counts.", "follow_up": "How would a heap of size k or bucket sort improve on fully sorting the counts?"},
+     {"id": "complexity", "description": "Correct complexity for the chosen approach", "weight": 0.2, "concepts": [["n log k", "o(n)", "n log n", "linear"]], "hint": "What does each approach cost in time?", "follow_up": "What is the time complexity of the heap-based approach?"}
+   ],
+   "hints": ["collections.Counter gives you frequencies.", "heapq.nlargest(k, ...) keeps only k items."],
+   "code_spec": {"function": "top_k_frequent", "compare": "sorted", "tests": [{"args": [[1, 1, 1, 2, 2, 3], 2], "expected": [1, 2]}, {"args": [[1], 1], "expected": [1]}, {"args": [[4, 4, 5, 5, 5, 6], 1], "expected": [5]}]}},
+  {"id": "dsa-binary-search", "category": "dsa", "kind": "code", "difficulty": "easy", "skills": ["Data Structures & Algorithms"],
+   "prompt": "Write `search(nums, target)` that returns the index of `target` in the sorted list `nums`, or -1 if absent, in O(log n) time. Explain how you avoid off-by-one errors.",
+   "rubric": [
+     {"id": "correctness", "description": "Passes the test cases", "weight": 0.6, "type": "tests"},
+     {"id": "invariant", "description": "Explains the loop invariant / boundaries", "weight": 0.25, "concepts": [["low", "high", "left", "right", "lo", "hi"], ["mid", "middle", "invariant", "half"]], "hint": "Define what the range [lo, hi] means at every iteration.", "follow_up": "What invariant does your loop maintain, and when does it terminate?"},
+     {"id": "complexity", "description": "States O(log n)", "weight": 0.15, "concepts": [["log n", "logarithmic", "o(log n)"]], "hint": "How much of the search space is removed each step?", "follow_up": "Why is the complexity logarithmic?"}
+   ],
+   "hints": ["Use lo, hi = 0, len(nums) - 1 and loop while lo <= hi."],
+   "code_spec": {"function": "search", "compare": "exact", "tests": [{"args": [[-1, 0, 3, 5, 9, 12], 9], "expected": 4}, {"args": [[-1, 0, 3, 5, 9, 12], 2], "expected": -1}, {"args": [[5], 5], "expected": 0}, {"args": [[], 1], "expected": -1}]}},
+  {"id": "dsa-lru-cache", "category": "dsa", "kind": "open", "difficulty": "medium", "skills": ["Data Structures & Algorithms", "Caching"],
+   "prompt": "How would you implement an LRU cache with O(1) get and put? Describe the data structures and what happens on a get, a put, and an eviction.",
+   "rubric": [
+     {"id": "structures", "description": "Hash map plus doubly linked list (or OrderedDict)", "weight": 0.45, "concepts": [["hash map", "dict", "hashmap", "dictionary"], ["doubly linked list", "linked list", "ordereddict"]], "hint": "You need O(1) lookup and O(1) reordering. Which two structures give you each?", "follow_up": "Why does the list need to be doubly linked?"},
+     {"id": "operations", "description": "Explains move-to-front on access and eviction of the tail", "weight": 0.35, "concepts": [["move", "front", "head", "most recent"], ["evict", "remove", "tail", "least recent"]], "hint": "What happens to an entry's position when it is read?", "follow_up": "Walk through exactly what happens when the cache is full and a new key is inserted."},
+     {"id": "complexity", "description": "Justifies O(1) operations", "weight": 0.2, "concepts": [["o(1)", "constant"]], "hint": "Which operations would be O(n) with a plain list?", "follow_up": "Which part of your design guarantees O(1) for eviction?"}
+   ],
+   "hints": ["Map keys to list nodes.", "Keep most recently used at the head."]},
+  {"id": "dsa-graph-shortest-path", "category": "dsa", "kind": "open", "difficulty": "medium", "skills": ["Data Structures & Algorithms"],
+   "prompt": "Given an unweighted graph, how do you find the shortest path between two nodes? How does your answer change if edges have non-negative weights?",
+   "rubric": [
+     {"id": "bfs", "description": "BFS for unweighted graphs with a queue and visited set", "weight": 0.45, "concepts": [["bfs", "breadth-first", "breadth first"], ["queue", "visited", "level"]], "hint": "Which traversal explores nodes in order of distance?", "follow_up": "Why does BFS guarantee the shortest path in an unweighted graph but DFS does not?"},
+     {"id": "weighted", "description": "Dijkstra with a priority queue for weighted graphs", "weight": 0.4, "concepts": [["dijkstra"], ["priority queue", "heap", "min-heap"]], "hint": "What algorithm handles non-negative weights?", "follow_up": "What is Dijkstra's time complexity with a binary heap?"},
+     {"id": "complexity", "description": "States O(V + E) for BFS", "weight": 0.15, "concepts": [["v + e", "v+e", "vertices and edges"]], "hint": "Each vertex and edge is processed how many times?", "follow_up": "What is the complexity of BFS in terms of vertices and edges?"}
+   ],
+   "hints": ["Think about exploring the graph level by level."]},
+  {"id": "py-gil", "category": "python", "kind": "open", "difficulty": "medium", "skills": ["Python", "Asynchronous Programming"],
+   "prompt": "What is the Global Interpreter Lock (GIL) in CPython, and how does it affect choosing between threads, processes and asyncio?",
+   "rubric": [
+     {"id": "definition", "description": "One thread executes Python bytecode at a time", "weight": 0.35, "concepts": [["one thread", "single thread", "only one", "mutex", "lock"], ["bytecode", "interpreter", "cpython"]], "hint": "What does the lock protect?", "follow_up": "What exactly does the GIL prevent two threads from doing at the same time?"},
+     {"id": "cpu_vs_io", "description": "Threads help I/O-bound work, processes for CPU-bound", "weight": 0.4, "concepts": [["i/o", "io-bound", "io bound", "network"], ["cpu-bound", "cpu bound", "multiprocessing", "process"]], "hint": "Does the GIL get released while waiting on I/O?", "follow_up": "For a CPU-heavy image-processing job, would you use threads or processes, and why?"},
+     {"id": "asyncio", "description": "asyncio as cooperative concurrency on one thread", "weight": 0.25, "concepts": [["asyncio", "event loop", "coroutine", "await"]], "hint": "How does asyncio achieve concurrency without threads?", "follow_up": "When would asyncio be a better choice than threads?"}
+   ],
+   "hints": ["Separate CPU-bound and I/O-bound workloads."]},
+  {"id": "py-generators", "category": "python", "kind": "open", "difficulty": "easy", "skills": ["Python"],
+   "prompt": "Explain the difference between a list comprehension and a generator expression. When would you prefer a generator?",
+   "rubric": [
+     {"id": "laziness", "description": "Generators are lazy and produce values on demand", "weight": 0.45, "concepts": [["lazy", "on demand", "one at a time", "yield", "next"]], "hint": "When is each value computed?", "follow_up": "What happens if you iterate over the same generator twice?"},
+     {"id": "memory", "description": "Memory efficiency for large or infinite sequences", "weight": 0.35, "concepts": [["memory"], ["large", "infinite", "stream", "big"]], "hint": "What happens with a billion items?", "follow_up": "Give an example where a list would run out of memory but a generator would not."},
+     {"id": "tradeoff", "description": "Lists support indexing / reuse; generators are single-pass", "weight": 0.2, "concepts": [["index", "reuse", "single pass", "once", "len"]], "hint": "What can a list do that a generator cannot?", "follow_up": "What operations do you lose with a generator?"}
+   ],
+   "hints": ["Think about when values are computed and stored."]},
+  {"id": "py-mutable-default", "category": "python", "kind": "open", "difficulty": "easy", "skills": ["Python"],
+   "prompt": "What is wrong with `def add_item(item, items=[]): items.append(item); return items`? How do you fix it?",
+   "rubric": [
+     {"id": "cause", "description": "Default evaluated once at definition time and shared", "weight": 0.5, "concepts": [["once", "definition time", "defined", "shared", "same list"]], "hint": "When is the default value created?", "follow_up": "When exactly is the default list created, and why does that matter?"},
+     {"id": "fix", "description": "Use None as default and create a new list inside", "weight": 0.4, "concepts": [["none"], ["new list", "inside", "if items is none", "create"]], "hint": "What sentinel can you use instead?", "follow_up": "Show the corrected function signature and first line."},
+     {"id": "mutability", "description": "Mentions mutable vs immutable defaults", "weight": 0.1, "concepts": [["mutable", "immutable"]], "hint": "Would the same problem occur with a tuple default?", "follow_up": "Why is a tuple default safe?"}
+   ],
+   "hints": ["Call the function twice without the second argument and compare."]},
+  {"id": "py-decorators", "category": "python", "kind": "open", "difficulty": "medium", "skills": ["Python"],
+   "prompt": "What is a decorator in Python? Describe how you would write one that measures how long a function takes, and what `functools.wraps` is for.",
+   "rubric": [
+     {"id": "definition", "description": "A callable that takes a function and returns a wrapped function", "weight": 0.4, "concepts": [["function", "callable"], ["wrap", "returns", "higher-order", "higher order"]], "hint": "What does @decorator desugar to?", "follow_up": "What does `@timer` above `def f()` translate to?"},
+     {"id": "implementation", "description": "Inner wrapper with *args/**kwargs and timing", "weight": 0.35, "concepts": [["*args", "args", "kwargs"], ["time", "perf_counter", "timer"]], "hint": "How does the wrapper accept arbitrary arguments?", "follow_up": "How does your wrapper pass through arguments and the return value?"},
+     {"id": "wraps", "description": "functools.wraps preserves metadata (__name__, docstring)", "weight": 0.25, "concepts": [["wraps"], ["name", "metadata", "docstring", "__name__"]], "hint": "What happens to f.__name__ after decorating?", "follow_up": "What breaks if you omit functools.wraps?"}
+   ],
+   "hints": ["Decorators are functions returning functions."]},
+  {"id": "be-idempotency", "category": "backend", "kind": "open", "difficulty": "medium", "skills": ["REST APIs"],
+   "prompt": "A client may retry a POST /payments request after a timeout. How do you make this endpoint safe against duplicate charges?",
+   "rubric": [
+     {"id": "idempotency_key", "description": "Client-supplied idempotency key", "weight": 0.45, "concepts": [["idempotency key", "idempotency-key", "idempotent", "request id", "unique key"]], "hint": "How can the server recognize a retry of the same request?", "follow_up": "Where would you store idempotency keys and for how long?"},
+     {"id": "storage", "description": "Persist key with result and return stored response on retry", "weight": 0.35, "concepts": [["store", "save", "persist", "table", "cache"], ["same response", "return", "previous result", "stored response"]], "hint": "What should the second request return?", "follow_up": "What do you return if the first request is still in progress when the retry arrives?"},
+     {"id": "concurrency", "description": "Unique constraint / lock to handle concurrent retries", "weight": 0.2, "concepts": [["unique constraint", "lock", "transaction", "atomic", "race"]], "hint": "What if two retries arrive at the same time?", "follow_up": "How do you prevent a race between two identical concurrent requests?"}
+   ],
+   "hints": ["GET and PUT are idempotent by definition; POST is not."]},
+  {"id": "be-indexing", "category": "backend", "kind": "open", "difficulty": "medium", "skills": ["PostgreSQL", "Database Design"],
+   "prompt": "A query `SELECT * FROM orders WHERE customer_id = $1 AND status = 'open' ORDER BY created_at DESC LIMIT 20` is slow on a table with 50M rows. How would you investigate and fix it?",
+   "rubric": [
+     {"id": "explain", "description": "Uses EXPLAIN / EXPLAIN ANALYZE to inspect the plan", "weight": 0.3, "concepts": [["explain", "query plan", "analyze"]], "hint": "How do you see what the database is actually doing?", "follow_up": "What would you look for in the EXPLAIN ANALYZE output?"},
+     {"id": "index", "description": "Composite index matching filter and sort columns", "weight": 0.45, "concepts": [["composite", "multi-column", "multicolumn", "index on (customer_id", "compound"], ["created_at", "order", "sort"]], "hint": "Can one index serve both the WHERE and ORDER BY?", "follow_up": "In what column order would you create the index, and why?"},
+     {"id": "tradeoffs", "description": "Index costs: write overhead, partial indexes, selectivity", "weight": 0.25, "concepts": [["write", "insert", "overhead", "partial index", "selectivity", "storage"]], "hint": "What do indexes cost?", "follow_up": "When would a partial index on status = 'open' be a better choice?"}
+   ],
+   "hints": ["Start with the query plan.", "Think about which columns are filtered and sorted."]},
+  {"id": "be-transactions", "category": "backend", "kind": "open", "difficulty": "medium", "skills": ["SQL", "PostgreSQL"],
+   "prompt": "Two requests try to reserve the last seat on a flight at the same time. How do you prevent overbooking at the database level?",
+   "rubric": [
+     {"id": "transaction", "description": "Wrap check-and-update in a transaction", "weight": 0.3, "concepts": [["transaction", "atomic", "begin", "commit"]], "hint": "What groups the read and write together?", "follow_up": "Is a transaction alone enough at the default isolation level? Why or why not?"},
+     {"id": "locking", "description": "Row lock (SELECT ... FOR UPDATE), conditional update, or constraint", "weight": 0.5, "concepts": [["for update", "row lock", "lock", "conditional update", "where seats > 0", "constraint", "optimistic", "version"]], "hint": "How can the second request be forced to wait or fail?", "follow_up": "Compare pessimistic locking with an optimistic version-number approach."},
+     {"id": "isolation", "description": "Mentions isolation levels / race conditions", "weight": 0.2, "concepts": [["isolation", "serializable", "repeatable read", "race condition", "read committed"]], "hint": "What anomaly occurs at READ COMMITTED?", "follow_up": "What would SERIALIZABLE isolation do here?"}
+   ],
+   "hints": ["The danger is the gap between reading the count and writing the reservation."]},
+  {"id": "be-auth", "category": "backend", "kind": "open", "difficulty": "medium", "skills": ["Authentication & Security"],
+   "prompt": "Compare session-cookie authentication with JWT bearer tokens for a web app. What are the security trade-offs, and how do you revoke access?",
+   "rubric": [
+     {"id": "mechanics", "description": "Server-side session state vs self-contained signed token", "weight": 0.35, "concepts": [["session", "server-side", "store"], ["signed", "stateless", "self-contained", "claims"]], "hint": "Where is the state kept in each model?", "follow_up": "What exactly does the server verify on each request with a JWT?"},
+     {"id": "security", "description": "XSS/CSRF, httpOnly/secure cookies, token storage", "weight": 0.35, "concepts": [["xss", "csrf", "httponly", "samesite", "secure"]], "hint": "Where would you store the token in the browser?", "follow_up": "Why is storing a JWT in localStorage risky?"},
+     {"id": "revocation", "description": "Short expiry, refresh tokens, denylist or token versioning", "weight": 0.3, "concepts": [["expir", "short-lived", "refresh", "denylist", "blacklist", "revoke", "version"]], "hint": "A JWT is valid until it expires. How do you cut that short?", "follow_up": "How would you log a user out of every device immediately?"}
+   ],
+   "hints": ["Consider where state lives and how each is attacked."]},
+  {"id": "be-n-plus-one", "category": "backend", "kind": "open", "difficulty": "easy", "skills": ["ORM", "SQL"],
+   "prompt": "What is the N+1 query problem with ORMs, how do you detect it, and how do you fix it?",
+   "rubric": [
+     {"id": "definition", "description": "One query for the list plus one per item", "weight": 0.4, "concepts": [["one query", "1 query", "n queries", "per item", "each row", "loop"]], "hint": "Count the queries when rendering 100 orders with their customers.", "follow_up": "How many queries run when listing 100 posts with their authors lazily loaded?"},
+     {"id": "fix", "description": "Eager loading / joins / batching", "weight": 0.4, "concepts": [["eager", "join", "select_related", "prefetch", "selectinload", "joinedload", "batch", "in ("]], "hint": "How can related rows be loaded together?", "follow_up": "When would you choose a separate IN query over a JOIN?"},
+     {"id": "detection", "description": "Query logging, APM, tests asserting query counts", "weight": 0.2, "concepts": [["log", "monitor", "apm", "count", "profil", "debug toolbar"]], "hint": "How would you notice it in development?", "follow_up": "How could a test catch an N+1 regression?"}
+   ],
+   "hints": ["Lazy loading inside a loop is the usual cause."]},
+  {"id": "be-rate-limiting", "category": "backend", "kind": "open", "difficulty": "medium", "skills": ["REST APIs", "Redis"],
+   "prompt": "How would you implement per-user rate limiting (e.g. 100 requests/minute) for an API running on several servers?",
+   "rubric": [
+     {"id": "algorithm", "description": "Token bucket / sliding window / fixed window", "weight": 0.4, "concepts": [["token bucket", "leaky bucket", "sliding window", "fixed window", "counter"]], "hint": "Name an algorithm that tracks requests over time.", "follow_up": "What is the burst behavior of a fixed window compared to a sliding window?"},
+     {"id": "shared_state", "description": "Shared store (Redis) with atomic increments / expiry", "weight": 0.4, "concepts": [["redis", "shared", "central", "distributed"], ["atomic", "incr", "expire", "ttl", "lua"]], "hint": "Where is the counter stored if there are many servers?", "follow_up": "How do you keep the counter update atomic?"},
+     {"id": "response", "description": "429 status and Retry-After header", "weight": 0.2, "concepts": [["429", "too many requests", "retry-after", "retry after"]], "hint": "What should the client receive when limited?", "follow_up": "What headers would you send to help clients back off?"}
+   ],
+   "hints": ["Separate the algorithm from where its state lives."]},
+  {"id": "be-cache-invalidation", "category": "backend", "kind": "open", "difficulty": "medium", "skills": ["Caching", "Redis"],
+   "prompt": "You add a Redis cache in front of a product-details endpoint. How do you keep cached data consistent when products are updated?",
+   "rubric": [
+     {"id": "pattern", "description": "Cache-aside / write-through and TTL", "weight": 0.4, "concepts": [["cache-aside", "cache aside", "lazy loading", "write-through", "write through", "ttl", "expire"]], "hint": "Who populates the cache and when does it expire?", "follow_up": "Compare cache-aside with write-through for this endpoint."},
+     {"id": "invalidation", "description": "Delete/update cache key on write", "weight": 0.4, "concepts": [["invalidate", "delete", "evict", "update the cache", "purge"]], "hint": "What should happen to the cache entry on product update?", "follow_up": "Why is deleting the key often safer than updating it?"},
+     {"id": "pitfalls", "description": "Stale reads, race conditions, thundering herd", "weight": 0.2, "concepts": [["stale", "race", "stampede", "thundering herd", "consistency"]], "hint": "What can go wrong under concurrent reads and writes?", "follow_up": "How would you prevent a cache stampede when a hot key expires?"}
+   ],
+   "hints": ["Think about the read path and the write path separately."]},
+  {"id": "sd-url-shortener", "category": "system_design", "kind": "open", "difficulty": "medium", "skills": ["System Design", "Database Design", "Caching"],
+   "prompt": "Design a URL shortener handling 100M new links per month and 10x more redirects. Cover the API, ID generation, storage, and how you scale reads.",
+   "rubric": [
+     {"id": "requirements", "description": "Clarifies requirements and estimates scale", "weight": 0.15, "concepts": [["requirement", "estimate", "qps", "per second", "storage", "read-heavy", "read heavy"]], "hint": "Start with read/write ratio and storage estimates.", "follow_up": "Roughly how many redirects per second is that, and how much storage over five years?"},
+     {"id": "id_generation", "description": "Base62 encoding / counter / hash with collision handling", "weight": 0.3, "concepts": [["base62", "base 62", "hash", "counter", "unique id", "snowflake"], ["collision", "unique", "conflict"]], "hint": "How do you generate a short unique code?", "follow_up": "How do you avoid collisions when generating codes on multiple servers?"},
+     {"id": "storage", "description": "Key-value / database schema choice", "weight": 0.2, "concepts": [["database", "key-value", "key value", "nosql", "postgres", "table"]], "hint": "What does the access pattern look like?", "follow_up": "Why might a key-value store suit this access pattern?"},
+     {"id": "scaling_reads", "description": "Caching, CDN, replicas for redirects", "weight": 0.35, "concepts": [["cache", "redis", "cdn"], ["replica", "shard", "partition", "load balancer"]], "hint": "Redirects dominate. How do you serve them fast?", "follow_up": "Which layer would absorb most redirect traffic and why?"}
+   ],
+   "hints": ["Reads vastly outnumber writes."]},
+  {"id": "sd-rate-limiter", "category": "system_design", "kind": "open", "difficulty": "medium", "skills": ["System Design", "Distributed Systems"],
+   "prompt": "Design a distributed rate limiter service used by many internal APIs. Discuss algorithm choice, data store, latency, and failure modes.",
+   "rubric": [
+     {"id": "algorithm", "description": "Chooses and justifies an algorithm", "weight": 0.3, "concepts": [["token bucket", "sliding window", "leaky bucket", "fixed window"]], "hint": "Which algorithm allows controlled bursts?", "follow_up": "Why did you pick that algorithm over the alternatives?"},
+     {"id": "store", "description": "Low-latency shared store with atomic operations", "weight": 0.3, "concepts": [["redis", "in-memory", "memory"], ["atomic", "lua", "incr"]], "hint": "Where do counters live and how are they updated?", "follow_up": "How do you keep latency low when every API call checks the limiter?"},
+     {"id": "failure", "description": "Fail-open vs fail-closed, degradation", "weight": 0.25, "concepts": [["fail open", "fail-open", "fail closed", "fail-closed", "fallback", "degrad"]], "hint": "What happens if the store is down?", "follow_up": "Should the limiter fail open or closed for a payments API? Why?"},
+     {"id": "scale", "description": "Sharding / local caching / consistency trade-offs", "weight": 0.15, "concepts": [["shard", "partition", "local", "consisten", "eventual"]], "hint": "How does it scale to millions of keys?", "follow_up": "What accuracy do you give up with local counters synced periodically?"}
+   ],
+   "hints": ["Consider correctness vs latency."]},
+  {"id": "sd-notifications", "category": "system_design", "kind": "open", "difficulty": "hard", "skills": ["System Design", "Message Queues"],
+   "prompt": "Design a notification system that sends email, SMS and push notifications to millions of users, with retries and user preferences.",
+   "rubric": [
+     {"id": "async", "description": "Queue-based asynchronous processing with workers", "weight": 0.35, "concepts": [["queue", "kafka", "sqs", "rabbitmq", "pub/sub"], ["worker", "consumer", "async"]], "hint": "Should the API send notifications synchronously?", "follow_up": "Why decouple the API from delivery with a queue?"},
+     {"id": "retries", "description": "Retries with backoff, dead-letter queue, idempotency", "weight": 0.3, "concepts": [["retry", "backoff"], ["dead letter", "dlq", "idempot", "dedup"]], "hint": "What happens when a provider is down?", "follow_up": "How do you avoid sending the same notification twice after a retry?"},
+     {"id": "preferences", "description": "Preference / opt-out checks and rate limits", "weight": 0.2, "concepts": [["preference", "opt-out", "opt out", "unsubscribe", "quiet hours", "rate limit"]], "hint": "How do you respect what users want?", "follow_up": "Where in the pipeline do you check preferences, and why there?"},
+     {"id": "providers", "description": "Channel-specific providers / templates", "weight": 0.15, "concepts": [["provider", "template", "channel", "twilio", "apns", "fcm"]], "hint": "Each channel has different third-party services.", "follow_up": "How would you switch providers if one degrades?"}
+   ],
+   "hints": ["Separate accepting a notification from delivering it."]},
+  {"id": "beh-conflict", "category": "behavioral", "kind": "behavioral", "difficulty": "medium", "skills": ["Collaboration", "Communication"],
+   "prompt": "Tell me about a time you disagreed with a teammate about a technical decision. What did you do and what was the outcome?",
+   "rubric": [
+     {"id": "situation", "description": "Clear situation and context", "weight": 0.2, "concepts": [["when", "project", "team", "we were", "situation", "at my"]], "hint": "Set the scene in one or two sentences.", "follow_up": "Can you give more context: what project, and what was at stake?"},
+     {"id": "action", "description": "Specific actions you took (I, not we)", "weight": 0.35, "concepts": [["i "], ["discussed", "proposed", "data", "prototype", "listened", "compared", "benchmark", "asked", "met"]], "hint": "What did you personally do?", "follow_up": "What specifically did you do to resolve the disagreement?"},
+     {"id": "result", "description": "Outcome and what you learned", "weight": 0.3, "concepts": [["result", "outcome", "ended", "shipped", "decided", "agreed"], ["learn", "lesson", "next time", "since then"]], "hint": "How did it end, and what did you take away?", "follow_up": "What was the measurable outcome, and what would you do differently?"},
+     {"id": "respect", "description": "Shows respect and openness to other views", "weight": 0.15, "concepts": [["understand", "perspective", "respect", "their point", "compromise", "trade-off", "tradeoff"]], "hint": "How did you treat the other person's view?", "follow_up": "How did you make sure your teammate felt heard?"}
+   ],
+   "hints": ["Use STAR: Situation, Task, Action, Result."]},
+  {"id": "beh-failure", "category": "behavioral", "kind": "behavioral", "difficulty": "medium", "skills": ["Problem Solving", "Communication"],
+   "prompt": "Describe a time something you built failed in production or missed a deadline. How did you handle it?",
+   "rubric": [
+     {"id": "ownership", "description": "Takes ownership without blaming others", "weight": 0.3, "concepts": [["i ", "my mistake", "i missed", "i should", "responsib", "owned"]], "hint": "What was your part in it?", "follow_up": "What part of the failure was your responsibility?"},
+     {"id": "response", "description": "Immediate response: mitigation and communication", "weight": 0.3, "concepts": [["rollback", "rolled back", "fix", "hotfix", "mitigat", "communicat", "informed", "told"]], "hint": "What did you do in the first hours?", "follow_up": "How did you communicate the problem to stakeholders?"},
+     {"id": "prevention", "description": "Root cause and prevention", "weight": 0.3, "concepts": [["root cause", "postmortem", "post-mortem", "test", "monitor", "alert", "process", "prevent"]], "hint": "How did you stop it from happening again?", "follow_up": "What concrete change prevented a recurrence?"},
+     {"id": "result", "description": "Outcome and learning", "weight": 0.1, "concepts": [["learn", "lesson", "result", "since"]], "hint": "What did you learn?", "follow_up": "What is the biggest lesson you took from this?"}
+   ],
+   "hints": ["Interviewers look for ownership and learning, not perfection."]},
+  {"id": "beh-deadline", "category": "behavioral", "kind": "behavioral", "difficulty": "easy", "skills": ["Communication", "Problem Solving"],
+   "prompt": "Tell me about a time you had to deliver under a tight deadline. How did you prioritize?",
+   "rubric": [
+     {"id": "situation", "description": "Context and the constraint", "weight": 0.2, "concepts": [["deadline", "days", "weeks", "launch", "release", "due"]], "hint": "What was the deadline and why was it tight?", "follow_up": "What made the deadline so tight?"},
+     {"id": "prioritization", "description": "How you prioritized / cut scope", "weight": 0.4, "concepts": [["priorit", "scope", "cut", "must-have", "mvp", "essential", "trade-off", "tradeoff"]], "hint": "What did you choose not to do?", "follow_up": "What did you deliberately leave out, and how did you decide?"},
+     {"id": "communication", "description": "Communicated with stakeholders", "weight": 0.2, "concepts": [["stakeholder", "manager", "communicat", "aligned", "updated", "informed"]], "hint": "Who did you keep informed?", "follow_up": "How did you set expectations with stakeholders?"},
+     {"id": "result", "description": "Outcome", "weight": 0.2, "concepts": [["deliver", "shipped", "launched", "released", "on time", "result", "met"]], "hint": "Did you make it? What happened next?", "follow_up": "What was the result, and was there any follow-up work?"}
+   ],
+   "hints": ["Prioritization and communication are the core signals."]},
+  {"id": "beh-leadership", "category": "behavioral", "kind": "behavioral", "difficulty": "medium", "skills": ["Leadership", "Communication"],
+   "prompt": "Describe a time you helped a teammate grow or led an initiative without formal authority.",
+   "rubric": [
+     {"id": "initiative", "description": "What you initiated and why", "weight": 0.3, "concepts": [["i noticed", "i started", "i proposed", "initiative", "volunteered", "took the lead", "led"]], "hint": "What did you notice that needed doing?", "follow_up": "Why did you decide to take that on?"},
+     {"id": "influence", "description": "How you influenced or supported others", "weight": 0.35, "concepts": [["mentor", "pair", "review", "taught", "documented", "workshop", "convinced", "support"]], "hint": "How did you bring others along?", "follow_up": "How did you get buy-in without authority?"},
+     {"id": "impact", "description": "Impact on the person or team", "weight": 0.35, "concepts": [["result", "impact", "improved", "promoted", "faster", "reduced", "adopted"]], "hint": "What changed because of it?", "follow_up": "How did you measure the impact?"}
+   ],
+   "hints": ["Focus on what you did and the measurable effect."]},
+  {"id": "proj-deep-dive", "category": "project", "kind": "open", "difficulty": "medium", "skills": ["Communication", "System Design"],
+   "prompt": "Walk me through the most technically interesting project on your resume: the problem, the architecture, your specific contribution, a key trade-off, and the result.",
+   "rubric": [
+     {"id": "problem", "description": "Explains the problem and why it mattered", "weight": 0.2, "concepts": [["problem", "needed", "goal", "users", "slow", "manual"]], "hint": "Start with who had the problem.", "follow_up": "Who was affected by the problem, and how did you know it mattered?"},
+     {"id": "architecture", "description": "Describes components and data flow", "weight": 0.25, "concepts": [["api", "service", "database", "queue", "frontend", "backend", "architecture", "component"]], "hint": "Sketch the main components.", "follow_up": "How did data flow through the system?"},
+     {"id": "contribution", "description": "Specific personal contribution", "weight": 0.25, "concepts": [["i built", "i designed", "i wrote", "i implemented", "my role", "i owned", "i led"]], "hint": "What did you do yourself?", "follow_up": "Which part did you personally design or build?"},
+     {"id": "tradeoff", "description": "A real trade-off and alternatives considered", "weight": 0.2, "concepts": [["trade-off", "tradeoff", "instead of", "alternative", "chose", "considered", "versus", "vs"]], "hint": "What alternative did you reject?", "follow_up": "What alternative did you consider, and why did you reject it?"},
+     {"id": "result", "description": "Measurable outcome", "weight": 0.1, "concepts": [["%", "reduced", "improved", "users", "latency", "faster", "saved"]], "hint": "What changed after it shipped?", "follow_up": "What measurable result did the project have?"}
+   ],
+   "hints": ["Be specific about your own role and one decision you made."]},
+  {"id": "proj-hardest-bug", "category": "project", "kind": "open", "difficulty": "medium", "skills": ["Problem Solving"],
+   "prompt": "Tell me about the hardest bug you have debugged. How did you find the root cause?",
+   "rubric": [
+     {"id": "symptom", "description": "Describes the symptom clearly", "weight": 0.2, "concepts": [["error", "crash", "slow", "intermittent", "symptom", "failed", "wrong"]], "hint": "What did users or monitoring see?", "follow_up": "How did the bug show up, and how often?"},
+     {"id": "method", "description": "Systematic debugging method", "weight": 0.4, "concepts": [["log", "reproduc", "bisect", "debugger", "trace", "profil", "hypothes", "isolat", "metrics"]], "hint": "How did you narrow it down?", "follow_up": "How did you reproduce it, and how did you narrow down the cause?"},
+     {"id": "root_cause", "description": "Explains the root cause", "weight": 0.25, "concepts": [["root cause", "because", "caused by", "race", "leak", "turned out"]], "hint": "What was actually wrong?", "follow_up": "What exactly was the underlying cause?"},
+     {"id": "prevention", "description": "Fix and prevention", "weight": 0.15, "concepts": [["test", "fix", "monitor", "alert", "prevent"]], "hint": "How did you prevent it recurring?", "follow_up": "What did you add so it could not happen again?"}
+   ],
+   "hints": ["Show a systematic process, not luck."]}
+]

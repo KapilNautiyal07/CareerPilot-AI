@@ -1,0 +1,43 @@
+# Run from the repository root:  docker compose -f infrastructure/docker-compose.yml --env-file .env up --build
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: careerpilot
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: careerpilot
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U careerpilot -d careerpilot"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build: ../backend
+    env_file: ../.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://careerpilot:${POSTGRES_PASSWORD}@db:5432/careerpilot
+      STORAGE_DIR: /app/var/uploads
+      CORS_ORIGINS: http://localhost:3000
+    volumes:
+      - uploads:/app/var/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ../frontend
+    environment:
+      BACKEND_URL: http://backend:8000
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:
+  uploads:

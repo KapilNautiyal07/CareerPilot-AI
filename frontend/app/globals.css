@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: oklch(0.985 0.002 264);
+  --foreground: oklch(0.21 0.02 264);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.02 264);
+  --muted: oklch(0.965 0.004 264);
+  --muted-foreground: oklch(0.5 0.02 264);
+  --border: oklch(0.91 0.006 264);
+  --input: oklch(0.88 0.008 264);
+  --primary: oklch(0.51 0.2 277);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-soft: oklch(0.95 0.03 277);
+  --accent: oklch(0.955 0.012 277);
+  --accent-foreground: oklch(0.35 0.12 277);
+  --success: oklch(0.55 0.13 155);
+  --success-soft: oklch(0.95 0.04 155);
+  --warning: oklch(0.62 0.14 70);
+  --warning-soft: oklch(0.96 0.05 85);
+  --danger: oklch(0.55 0.2 27);
+  --danger-soft: oklch(0.96 0.03 27);
+  --ring: oklch(0.6 0.18 277);
+  --radius: 0.65rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: oklch(0.17 0.015 264);
+    --foreground: oklch(0.95 0.005 264);
+    --card: oklch(0.21 0.017 264);
+    --card-foreground: oklch(0.95 0.005 264);
+    --muted: oklch(0.25 0.017 264);
+    --muted-foreground: oklch(0.72 0.015 264);
+    --border: oklch(0.3 0.02 264);
+    --input: oklch(0.36 0.02 264);
+    --primary: oklch(0.68 0.16 277);
+    --primary-foreground: oklch(0.16 0.02 277);
+    --primary-soft: oklch(0.3 0.06 277);
+    --accent: oklch(0.28 0.04 277);
+    --accent-foreground: oklch(0.88 0.06 277);
+    --success: oklch(0.72 0.14 155);
+    --success-soft: oklch(0.3 0.05 155);
+    --warning: oklch(0.8 0.13 80);
+    --warning-soft: oklch(0.32 0.05 80);
+    --danger: oklch(0.7 0.17 27);
+    --danger-soft: oklch(0.32 0.06 27);
+    --ring: oklch(0.7 0.15 277);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--primary-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

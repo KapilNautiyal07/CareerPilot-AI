@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "notes": "Fictional candidates. `expected_skills` are the skills a careful human reviewer would extract as explicitly stated. Job relevance labels refer to bundled mock job ids: 2 = strong fit, 1 = plausible, 0 = not relevant.",
+  "candidates": [
+    {
+      "id": "backend-mid",
+      "target_role": "Backend Engineer",
+      "resume_file": "sample",
+      "expected_skills": ["Python", "Flask", "FastAPI", "SQL", "PostgreSQL", "MySQL", "Pandas", "Docker", "Git", "Linux", "JavaScript", "HTML/CSS", "Redis", "REST APIs", "Testing", "CI/CD", "Agile", "Go", "AWS", "Authentication & Security", "Caching"],
+      "job_relevance": {"demo-001": 2, "demo-005": 2, "demo-003": 2, "demo-020": 2, "demo-004": 1, "demo-007": 1, "demo-019": 1, "demo-002": 1, "demo-006": 1, "demo-009": 0, "demo-018": 0, "demo-010": 1, "demo-013": 0, "demo-015": 0, "demo-016": 0, "demo-012": 0}
+    },
+    {
+      "id": "data-engineer",
+      "target_role": "Data Engineer",
+      "resume_text": "Arjun Mehta\nPune, India | arjun@example.com\n\nSUMMARY\nData engineer building batch pipelines for analytics teams.\n\nEXPERIENCE\nData Engineer | Cobalt Retail Analytics | Mar 2022 - Present\n- Built ETL pipelines in Python and SQL orchestrated with Airflow, processing 2 TB per day.\n- Migrated reporting tables to Snowflake and modeled them with dbt, reducing query cost by 30%.\n- Wrote PySpark jobs on Databricks for customer segmentation.\nJunior Analyst | Meridian Insurance | Jul 2020 - Feb 2022\n- Automated Excel reports with Pandas and PostgreSQL.\n\nSKILLS\nPython, SQL, Airflow, Spark, Snowflake, dbt, Pandas, PostgreSQL, Git, Docker, AWS\n\nEDUCATION\nB.E. in Information Technology, Savitribai Phule Pune University, 2020",
+      "expected_skills": ["Python", "SQL", "ETL", "Airflow", "Data Warehousing", "Spark", "Pandas", "PostgreSQL", "Git", "Docker", "AWS"],
+      "job_relevance": {"demo-013": 2, "demo-014": 2, "demo-015": 1, "demo-019": 1, "demo-001": 0, "demo-010": 0, "demo-012": 0, "demo-016": 0, "demo-006": 0}
+    },
+    {
+      "id": "frontend",
+      "target_role": "Frontend Engineer",
+      "resume_text": "Sara Khan\nRemote | sara@example.com\n\nEXPERIENCE\nFrontend Developer, Pixel Harbor, Jan 2021 - Present\n- Built React and TypeScript components for a design system used by 12 product teams.\n- Migrated the marketing site to Next.js and Tailwind CSS, improving Lighthouse performance score from 62 to 95.\n- Wrote unit tests with Jest and React Testing Library.\nWeb Developer Intern, Brightside Labs, Jun 2020 - Dec 2020\n- Maintained HTML/CSS templates and small JavaScript widgets.\n\nPROJECTS\nRecipe Finder | React, GraphQL\n- Personal project consuming a public GraphQL API.\n\nSKILLS\nJavaScript, TypeScript, React, Next.js, HTML/CSS, Tailwind CSS, Git, Jest, GraphQL\n\nEDUCATION\nB.Sc. Computer Science, University of Mumbai, 2020",
+      "expected_skills": ["React", "TypeScript", "JavaScript", "Next.js", "Tailwind CSS", "HTML/CSS", "Testing", "Git", "GraphQL"],
+      "job_relevance": {"demo-012": 2, "demo-010": 1, "demo-011": 1, "demo-007": 0, "demo-001": 0, "demo-013": 0, "demo-016": 0}
+    },
+    {
+      "id": "new-grad",
+      "target_role": "Python Developer",
+      "resume_text": "Leo Fernandes\nGoa, India | leo@example.com | https://github.com/example-leo\n\nEDUCATION\nB.Tech in Computer Engineering, Goa University, 2025\n\nPROJECTS\nCampus Events API | Python, FastAPI, PostgreSQL\n- Built a REST API with JWT authentication for 1,200 students to register for events.\n- Wrote pytest tests and a GitHub Actions workflow.\nAlgorithm Visualizer | JavaScript\n- Visualized sorting algorithms and data structures for first-year students.\n\nSKILLS\nPython, FastAPI, PostgreSQL, Git, JavaScript, Linux, Data Structures and Algorithms",
+      "expected_skills": ["Python", "FastAPI", "PostgreSQL", "REST APIs", "Authentication & Security", "Testing", "CI/CD", "JavaScript", "Git", "Linux", "Data Structures & Algorithms"],
+      "job_relevance": {"demo-019": 2, "demo-007": 2, "demo-003": 1, "demo-005": 1, "demo-001": 1, "demo-002": 0, "demo-013": 0, "demo-016": 0}
+    }
+  ],
+  "interview_cases": [
+    {"question": "be-idempotency", "answers": {
+      "good": "The client sends an idempotency key header with each POST. The server stores the key together with the stored response in a table with a unique constraint; a retry with the same key returns the previous result instead of charging again. Concurrent retries race on the unique constraint inside a transaction, so only one wins.",
+      "medium": "I would make the endpoint idempotent by having the client pass a unique request id, and the server checks whether it has seen that id before processing the payment.",
+      "poor": "Payments should be fast, so I would add more servers and retry the request until it works."}},
+    {"question": "py-generators", "answers": {
+      "good": "A list comprehension builds the whole list in memory immediately, while a generator expression is lazy and yields one value at a time on demand. For large or infinite streams the generator saves memory, but it is single pass: you cannot index it or reuse it after it is exhausted.",
+      "medium": "Generators use yield and are lazy, so they compute values when you call next on them.",
+      "poor": "They are basically the same thing but generators use round brackets instead of square ones."}},
+    {"question": "beh-deadline", "answers": {
+      "good": "We had two weeks before a launch deadline when a partner API changed. I prioritized the must-have flows, cut the reporting scope to an MVP, and aligned with my manager and the stakeholders on what would slip. I sent daily updates. We delivered the core checkout on time and shipped reporting the following sprint.",
+      "medium": "There was a deadline for a release and I worked late to finish my tasks, and we released it.",
+      "poor": "I always finish things on time."}}
+  ]
+}

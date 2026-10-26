@@ -1,0 +1,32 @@
+Priya Sharma
+Bengaluru, India | priya.sharma@example.com | +91 98765 43210 | https://github.com/example-priya
+
+SUMMARY
+Software engineer with experience building internal tools and REST services in Python. Looking to move into a backend engineering role at a product company.
+
+EXPERIENCE
+Software Engineer | Northwind Analytics | Jul 2021 – Present
+- Built and maintained REST APIs in Flask serving internal reporting dashboards used by 300+ analysts.
+- Reduced report generation time by 40% by rewriting slow SQL queries and adding indexes in PostgreSQL.
+- Wrote unit tests with pytest and set up GitHub Actions for continuous integration.
+- Containerized two services with Docker for consistent local development.
+
+Associate Software Engineer, Contoso Services, Bengaluru    Jun 2019 - Jun 2021
+- Developed data import scripts in Python and Pandas to clean CSV files from customers.
+- Maintained a MySQL database and wrote stored procedures for monthly billing.
+- Collaborated with QA and product teams in two-week Agile sprints.
+
+PROJECTS
+Expense Splitter | Python, FastAPI, SQLite
+- Side project: a small FastAPI service with JWT authentication for splitting group expenses.
+URL Shortener | Go
+- Learning project implementing a URL shortener with an in-memory cache.
+
+SKILLS
+Python, Flask, FastAPI, SQL, PostgreSQL, MySQL, Pandas, Docker, Git, Linux, JavaScript, HTML/CSS, Redis
+
+EDUCATION
+B.Tech in Computer Science, Visvesvaraya Technological University, 2019
+
+CERTIFICATIONS
+AWS Certified Cloud Practitioner, Amazon Web Services, 2022
